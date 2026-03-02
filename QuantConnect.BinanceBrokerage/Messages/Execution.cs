@@ -67,6 +67,29 @@ namespace QuantConnect.Brokerages.Binance.Messages
         [JsonProperty("N")]
         public string FeeCurrency { get; set; }
 
+        /// <summary>Original order quantity.</summary>
+        [JsonProperty("q")]
+        public decimal OriginalAmount { get; set; }
+
+        /// <summary>Order (limit) price.</summary>
+        [JsonProperty("p")]
+        public decimal Price { get; set; }
+
+        /// <summary>Stop price (Spot / Margin).</summary>
+        [JsonProperty("P")]
+        public decimal StopPrice { get; set; }
+
+        /// <summary>Stop price (Futures — field key differs from Spot).</summary>
+        [JsonProperty("sp")]
+        public decimal FuturesStopPrice { get; set; }
+
+        /// <summary>Order type as reported by the exchange (e.g. LIMIT, MARKET, STOP_LOSS_LIMIT).</summary>
+        [JsonProperty("o")]
+        public string OrderType { get; set; }
+
+        [JsonProperty("O")]
+        public long OrderCreationTime { get; set; }
+
         public OrderDirection Direction => Side.Equals("BUY", StringComparison.OrdinalIgnoreCase) ? OrderDirection.Buy : OrderDirection.Sell;
     }
 
